@@ -1,71 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>G Sreekar | Full Stack Engineer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sreekar Guttameda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- SEO -->
-  <meta name="description" content="G Sreekar – Full Stack Engineer specializing in Java, Python, JavaScript">
-  <meta name="keywords" content="Full Stack Engineer, Java, Python, JavaScript">
-  <meta name="author" content="G Sreekar">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --accent: #5b8dee;
+    --accent2: #7c5cbf;
+    --tag-bg: rgba(91,141,238,0.08);
+    --tag-border: rgba(91,141,238,0.2);
+    --tag-text: #8ab0f0;
+  }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  html { scroll-behavior: smooth; }
 
-  <!-- Google Analytics (replace ID later) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .noise {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .glow {
+    position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px; pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse, rgba(91,141,238,0.06) 0%, transparent 70%);
+  }
+
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 680px; margin: 0 auto;
+    padding: 80px 24px 80px;
+  }
+
+  /* Header */
+  .header { margin-bottom: 64px; }
+
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 100px; padding: 4px 12px;
+    margin-bottom: 28px; letter-spacing: 0.05em;
+  }
+  .status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 6px #4ade80;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 8vw, 58px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .role {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(13px, 2.5vw, 15px);
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+
+  .bio {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 520px;
+  }
+  .bio strong { color: var(--text); font-weight: 400; }
+
+  /* Links row */
+  .links {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 32px;
+  }
+  .link-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .link-btn:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+    background: rgba(255,255,255,0.03);
+  }
+  .link-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  /* Skills */
+  .skill-grid {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 0;
+  }
+  .skill-tag {
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    letter-spacing: 0.02em;
+  }
+  .skill-tag.sys {
+    background: rgba(124,92,191,0.08);
+    border-color: rgba(124,92,191,0.2);
+    color: #b09ae0;
+  }
+  .skill-tag.ai {
+    background: rgba(74,222,128,0.06);
+    border-color: rgba(74,222,128,0.15);
+    color: #7dd8a0;
+  }
+
+  /* Timeline */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .t-item {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 32px;
+  }
+  .t-item:last-child { margin-bottom: 0; }
+  .t-dot {
+    position: absolute; left: -4px; top: 7px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--muted);
+  }
+  .t-dot.current {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(91,141,238,0.4);
+  }
+  .t-head {
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 2px;
+  }
+  .t-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+  }
+  .t-period {
+    font-size: 11px; color: var(--muted);
+    white-space: nowrap;
+  }
+  .t-company {
+    font-size: 12px; color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .t-desc {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  .footer-note {
+    font-size: 11px; color: var(--muted); opacity: 0.5;
+  }
+
+  /* Fade in */
+  .fade-up {
+    opacity: 0; transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+</style>
 </head>
+<body>
 
-<body class="light">
-  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<div class="noise"></div>
+<div class="glow"></div>
 
-  <main class="container">
-    <h1>G Sreekar</h1>
-    <p class="subtitle">Full Stack Engineer</p>
+<div class="wrap">
 
-    <section>
-      <h2>About</h2>
-      <p>
-        Full Stack Engineer with experience building scalable applications using
-        Java, Python, and JavaScript.
-      </p>
-    </section>
+  <!-- Header -->
+  <header class="header">
+    <div class="status-pill fade-up">
+      <span class="status-dot"></span>
+      Member of Technical Staff · Zoho
+    </div>
 
-    <section>
-      <h2>Skills</h2>
-      <ul class="skills">
-        <li>Java</li>
-        <li>Python</li>
-        <li>JavaScript</li>
-        <li>React</li>
-        <li>Spring Boot</li>
-      </ul>
-    </section>
+    <h1 class="fade-up delay-1">Sreekar<br>Guttameda</h1>
 
-    <section>
-      <h2>Experience</h2>
-      <p>
-        Designed and developed full-stack applications with backend services,
-        REST APIs, and frontend dashboards.
-      </p>
-    </section>
+    <p class="role fade-up delay-2">ML & AI Systems Engineer · Agentic AI · Hardware-Accelerated Inference</p>
 
-    <section>
-      <h2>Contact</h2>
-      <p>Email: your@email.com</p>
-      <p>GitHub: github.com/yourusername</p>
-      <p>LinkedIn: linkedin.com/in/yourprofile</p>
-    </section>
-  </main>
+    <p class="bio fade-up delay-3">
+      Building systems at the intersection of <strong>hardware and AI</strong> —
+      from FPGA-accelerated inference pipelines to Agentic workflows using
+      <strong>Claude, Cursor, and MCP</strong>. Based in Chennai, India.
+      6+ years at Zoho, currently in R&D.
+    </p>
 
-  <script src="script.js"></script>
+    <div class="links fade-up delay-4">
+      <a class="link-btn" href="https://www.linkedin.com/in/sreekar-guttameda/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="link-btn" href="https://github.com/sreekar-guttameda" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+      <a class="link-btn" href="mailto:sreekar.guttameda@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </header>
+
+  <!-- Skills -->
+  <section class="fade-up delay-5">
+    <p class="section-label">Skills & Technologies</p>
+    <div class="skill-grid">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Deep Learning</span>
+      <span class="skill-tag">ML Pipelines</span>
+      <span class="skill-tag ai">Agentic AI</span>
+      <span class="skill-tag ai">Claude · MCP</span>
+      <span class="skill-tag ai">Cursor</span>
+      <span class="skill-tag sys">FPGA · Vitis-AI</span>
+      <span class="skill-tag sys">AMD Alveo</span>
+      <span class="skill-tag sys">HLS Pipelines</span>
+      <span class="skill-tag sys">TPU · CPU · FPGA</span>
+      <span class="skill-tag">Zoho CRM</span>
+      <span class="skill-tag">Root Cause Analysis</span>
+      <span class="skill-tag">System Design</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Experience -->
+  <section>
+    <p class="section-label">Experience</p>
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-dot current"></div>
+        <div class="t-head">
+          <span class="t-title">Member of Technical Staff</span>
+          <span class="t-period">Nov 2022 – Present</span>
+        </div>
+        <div class="t-company">Zoho · Full-time · Chennai</div>
+        <div class="t-desc">Designing Agentic AI systems using Claude, Cursor & MCP. Building hardware-accelerated inference pipelines on AMD FPGAs using Vitis-AI and HLS. Deploying Video-AI retail systems in production.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-head">
+          <span class="t-title">Engineer Trainee</span>
+          <span class="t-period">May 2021 – Nov 2022</span>
+        </div>
+        <div class="t-company">Zoho · Full-time · Chennai</div>
+        <div class="t-desc">Shipped enhancements to Zoho CRM end-to-end. Joined Zoho Labs R&D — built 4 production ML inference pipelines, worked with SVM and Deep Learning models, and led Git repository analysis research.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-head">
+          <span class="t-title">ZS Trainee</span>
+          <span class="t-period">Mar 2020 – May 2021</span>
+        </div>
+        <div class="t-company">Zoho · Intern → Full-time · Hybrid</div>
+        <div class="t-desc">Owned Setup Customization in Zoho CRM. Led a frontend revamp addressing backend response delays, transitioning to a modular framework. Developed deep root cause analysis habits on production issues.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-head">
+          <span class="t-title">ZU Student</span>
+          <span class="t-period">May 2019 – Feb 2020</span>
+        </div>
+        <div class="t-company">Zoho Schools of Learning · Apprenticeship</div>
+        <div class="t-desc">Built foundations in DSA with Python, frontend development with JavaScript, and backend systems with Java. Laid the engineering instincts that underpin all subsequent work.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-name">Sreekar Guttameda</span>
+    <span class="footer-note">Chennai, Tamil Nadu · India</span>
+  </footer>
+
+</div>
 </body>
 </html>
-
